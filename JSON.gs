@@ -57,7 +57,13 @@ function Export()
   var finalTextA = getValues(); //Variable calling function getValues and returning values from getValues function
   var finalTextB = getValuesB(); //Variable calling function getValuesB and returning values from getValuesB function
   var convert = new Array();
-  var json = makeJSON(finalTextA);
+  for (var i = row; i > 1; i--)
+  {
+    var b = 0;
+    convert[b] = (finalTextA[b] + '' + finalTextB[b]);
+    b++;
+  }
+  var json = makeJSON(convert);
   displayText_(json);
   //Logger.log(finalTextA);
 }
