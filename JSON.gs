@@ -56,32 +56,17 @@ function Export()
   var row = sheet.getLastRow();
   var finalTextA = getValues(); //Variable calling function getValues and returning values from getValues function
   var finalTextB = getValuesB(); //Variable calling function getValuesB and returning values from getValuesB function
+  var convert = new Array();
+  var json = makeJSON(finalTextA);
+  displayText_(json);
   //Logger.log(finalTextA);
-
-
 }
-  //Make JSON part of code
-  /*var arrayObject = []
-  if (finalTextA.length === finalTextB.length)
-  {
-    var b = 0;
-    for(var i = row; i > 1; i--)
-    {
-      arrayObject[b] = {"tailRegistration": "RocketRouteID",} //Variable JSON stores basic JSON structure and 4 spaces between RR ID and another tail registration 
-      b++;
-    }
-  }
-  else 
-  {
-    Logger.log('Error!');
-  }
-  var json = new Array();
-  json[b] = finalTextA[b] + finalTextB[b];
-  Logger.log(arrayObject);
-  var output = Utilities.jsonStringify(arrayObject);
-  displayText_(output);
-}*/
 
+function makeJSON(convertText)
+{
+  var jsonString = JSON.stringify(convertText, null, 4);
+  return jsonString;
+}
 
 function displayText_(text) {
   var output = HtmlService.createHtmlOutput("<textarea style='width:100%;' rows='20'>" + text + "</textarea>");
