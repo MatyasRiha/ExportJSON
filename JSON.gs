@@ -57,21 +57,35 @@ function Export()
   var finalTextA = getValues(); //Variable calling function getValues and returning values from getValues function
   var finalTextB = getValuesB(); //Variable calling function getValuesB and returning values from getValuesB function
   var convert = new Array();
-  for (var i = row; i > 1; i--)
+  if (finalTextA.length === finalTextB.length)
   {
     var b = 0;
-    convert[b] = (finalTextA[b] + '' + finalTextB[b]);
-    b++;
+    var n = 1;
+    for (var i = row; i > 1; i--)
+    {
+      convert[n] = ('"' + finalTextA[b] + '"' + ':' + ' ' + finalTextB[b] + ',' + '    ');
+      b++;
+      n++;
+    }
   }
+  else
+  {
+    const error = 'Error-tailRegistartion and Rocket Route ID lenght is not matching'
+    displayText_(error);
+  }
+  var lastBracket = row + 1;
+  convert[0] = '{    '
+  convert[lastBracket] = '}'
   var json = makeJSON(convert);
+  Logger.log(json);
   displayText_(json);
   //Logger.log(finalTextA);
 }
 
 function makeJSON(convertText)
 {
-  var jsonString = JSON.stringify(convertText, null, 4);
-  return jsonString;
+  var finalString = convertText.join('');
+  return finalString;
 }
 
 function displayText_(text) {
