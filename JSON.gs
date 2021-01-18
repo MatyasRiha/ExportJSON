@@ -95,4 +95,3 @@ function displayText_(text) {
   SpreadsheetApp.getUi()
       .showModalDialog(output, 'Exported JSON');
 }
-
