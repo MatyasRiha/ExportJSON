@@ -56,7 +56,8 @@ function Export()
   var row = sheet.getLastRow();
   var finalTextA = getValues(); //Variable calling function getValues and returning values from getValues function
   var finalTextB = getValuesB(); //Variable calling function getValuesB and returning values from getValuesB function
-  Logger.log(finalTextA); //372
+
+  
   var lastItem = finalTextA.length; //372, because i need to write at index 372, because N = 1, so 0 is clear for {
   var rocketRoute = lastItem - 1; //371, because last index of returning arrays is 372, we are not chcecking for row number 1 in foor loop
   var convert = new Array();
