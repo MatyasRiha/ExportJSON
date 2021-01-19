@@ -56,38 +56,44 @@ function Export()
   var row = sheet.getLastRow();
   var finalTextA = getValues(); //Variable calling function getValues and returning values from getValues function
   var finalTextB = getValuesB(); //Variable calling function getValuesB and returning values from getValuesB function
+  Logger.log(finalTextA); //372
+  var lastItem = finalTextA.length; //372, because i need to write at index 372, because N = 1, so 0 is clear for {
+  var rocketRoute = lastItem - 1; //371, because last index of returning arrays is 372, we are not chcecking for row number 1 in foor loop
   var convert = new Array();
   if (finalTextA.length === finalTextB.length)
   {
+    const loop = lastItem - 1; //371 How many times it should loop, it shouldnt loop last item, because of its difference
     var b = 0;
     var n = 1;
-    for (var i = row; i > 1; i--)
+    for (var i = loop; i != 0; i--)
     {
-      convert[n] = ('"' + finalTextA[b] + '"' + ':' + ' ' + finalTextB[b] + ',' + '    ');
+      convert[n] = ('"' + finalTextA[b] + '"' + ':' + ' ' + finalTextB[b] + ',' + '    '); //After loop N = 372
       b++;
       n++;
     }
+    convert[lastItem] = ('"' + finalTextA[rocketRoute] + '"' + ':' + ' ' + finalTextB[rocketRoute]);
   }
   else
   {
-    const error = 'Error-tailRegistartion and Rocket Route ID lenght is not matching'
+    const error = 'Error-tailRegistartion and Rocket Route ID length is not matching'
     displayText_(error);
   }
-  var lastBracket = row + 1;
-  convert[0] = '{    '
-  convert[lastBracket] = '}'
-  var json = makeJSON(convert);
-  Logger.log(json);
+  var lastBracket = lastItem + 1; //373 the last bracket have index of 1 + the last text
+  convert[0] = '{    ' //Index 0 is clear for bracket
+  convert[lastBracket] = ' }'
+  //Logger.log(convert);
+  var json = makeJSON(convert); //Calling make json function with argument convert-array
   displayText_(json);
-  //Logger.log(finalTextA);
 }
 
+//Function making from a array (convert) to a string 
 function makeJSON(convertText)
 {
-  var finalString = convertText.join('');
-  return finalString;
+  var finalString = convertText.join(''); //Making array
+  return finalString; //Returning final string 
 }
 
+//Function dipslying text
 function displayText_(text) {
   var output = HtmlService.createHtmlOutput("<textarea style='width:100%;' rows='20'>" + text + "</textarea>");
   output.setWidth(400)
